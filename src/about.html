@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon.png" />
+	<title>TailwindCSS-PostCSS</title>
+	<link href="./assets/css/styles.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-500">
+	<div class="container mx-auto">
+		<!-- <button id="show-btn" class="bg-green-400 text-white px-4 py-2">Show</button> -->
+		<h1 id="test" class="text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus dolores vel
+			nemo fugiat quo,
+			minus facilis
+			neque ipsa aperiam ipsum quam atque laborum ex dicta cum itaque iusto? Optio quasi cupiditate, eius
+			voluptatem distinctio placeat odit eaque temporibus qui vero, ipsa similique et quidem laborum labore
+			excepturi veritatis at? Vero.</h1>
+	</div>
+	<div id="show-navbar" class="absolute bg-blue-300 bg-opacity-10 inset-0 hidden justify-center items-center">
+		<div>
+			<ul class="bg-white py-2 rounded-md">
+				<div class="text-right p-1">
+					<button id="close-btn" class="bg-gray-400 px-2 py-1 text-white">X</button>
+				</div>
+				<li class="border-b px-3">Copy with citation</li>
+				<li class="border-b px-3">Highlight</li>
+				<li class="border-b px-3">Share</li>
+				<li class="border-b px-3">Add to Brief</li>
+			</ul>
+		</div>
+	</div>
+	<script src="./assets/js/jquery.min.js"></script>
+	<script>
+		function getSelected() {
+			if (window.getSelection) {
+				return window.getSelection();
+			}
+			else if (document.getSelection) {
+				return window.getSelection();
+			}
+			else {
+				var selection = document.selection && document.selection.createRange();
+				if (selection.text) {
+					return selection.text;
+				}
+				return false;
+			}
+			return false;
+		}
+		$('#test').mouseup(function () {
+			var selection = getSelected();
+			if (selection) {
+				window.addEventListener('DOMContentLoaded', () => {
+					const show = document.querySelector('#show-navbar')
+					show.addEventListener('click', () => {
+						show.classList.remove('hidden')
+						show.classList.add('flex')
+					})
+				}
+			}
+		})
+
+
+		window.addEventListener('DOMContentLoaded', () => {
+			const show = document.querySelector('#show-navbar')
+			// const showBtn = document.querySelector('#show-btn')
+			const closebtn = document.querySelector('#close-btn')
+
+
+			selection.addEventListener('click', () => {
+				show.classList.remove('hidden')
+				show.classList.add('flex')
+			})
+			closebtn.addEventListener('click', () => {
+				show.classList.add('hidden')
+				show.classList.remove('flex')
+			})
+
+		})
+	</script>
+</body>
+
+</html>
